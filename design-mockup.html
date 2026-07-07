@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FullStack App - Design Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      padding: 40px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: 32px; margin-bottom: 8px; }
+    .subtitle { color: #64748b; margin-bottom: 40px; }
+    .section { margin-bottom: 60px; }
+    .section-title {
+      font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+      color: #94a3b8; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;
+    }
+
+    /* iPhone 14 Pro Frame */
+    .phone-frame {
+      width: 390px; height: 844px;
+      background: #fff;
+      border-radius: 44px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      margin-right: 24px;
+      margin-bottom: 24px;
+      vertical-align: top;
+    }
+    .phone-frame .status-bar {
+      height: 44px; background: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; font-size: 12px; font-weight: 600;
+    }
+    .phone-frame .notch {
+      width: 120px; height: 28px; background: #0f172a;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto;
+    }
+    .phone-content {
+      height: calc(100% - 44px);
+      overflow-y: auto;
+    }
+    .phone-content::-webkit-scrollbar { display: none; }
+
+    /* Desktop Frame */
+    .desktop-frame {
+      width: 100%; max-width: 1100px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .desktop-frame .browser-bar {
+      height: 40px; background: #f1f5f9;
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 16px; border-bottom: 1px solid #e2e8f0;
+    }
+    .desktop-frame .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .desktop-frame .dot.red { background: #ef4444; }
+    .desktop-frame .dot.yellow { background: #eab308; }
+    .desktop-frame .dot.green { background: #22c55e; }
+    .desktop-frame .url-bar {
+      flex: 1; height: 24px; background: #fff;
+      border-radius: 6px; margin-left: 8px;
+      display: flex; align-items: center; padding: 0 10px;
+      font-size: 11px; color: #64748b;
+    }
+
+    /* Mock Components */
+    .header-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px; border-bottom: 1px solid #e2e8f0;
+    }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; }
+    .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 14px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { text-decoration: none; color: #64748b; font-size: 14px; font-weight: 500; }
+    .btn { padding: 8px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
+    .btn-secondary { background: transparent; border: 1px solid #e2e8f0; color: #475569; }
+
+    /* Hero Section */
+    .hero { text-align: center; padding: 60px 24px 40px; background: linear-gradient(180deg, #eef2ff 0%, #fff 100%); }
+    .hero h1 { font-size: 36px; line-height: 1.2; margin-bottom: 16px; }
+    .hero h1 span { background: linear-gradient(135deg, #6366f1, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: #64748b; font-size: 16px; max-width: 300px; margin: 0 auto 28px; line-height: 1.6; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; background: #eef2ff; color: #4f46e5;
+      border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 24px;
+    }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; }
+    /* Desktop Hero */
+    .hero-desktop { text-align: center; padding: 80px 60px 60px; background: linear-gradient(180deg, #eef2ff 0%, #fff 100%); position: relative; overflow: hidden; }
+    .hero-desktop::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%); border-radius: 50%; }
+    .hero-desktop h1 { font-size: 56px; max-width: 700px; margin: 0 auto 16px; }
+    .hero-desktop p { color: #64748b; font-size: 18px; max-width: 500px; margin: 0 auto 32px; }
+
+    /* Cards Grid */
+    .card-grid { display: flex; gap: 16px; padding: 20px; flex-wrap: wrap; }
+    .card {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 16px;
+      padding: 20px; flex: 1; min-width: 160px;
+      transition: all 0.2s;
+    }
+    .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 18px; }
+    .card h3 { font-size: 16px; margin-bottom: 6px; }
+    .card p { font-size: 13px; color: #64748b; line-height: 1.5; }
+
+    /* Feature Grid */
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding: 20px; }
+    .desktop-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 40px 60px; }
+
+    /* Auth Card */
+    .auth-card {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 16px;
+      padding: 32px 24px; margin: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .auth-card .field { margin-bottom: 16px; }
+    .auth-card label { font-size: 13px; font-weight: 500; color: #334155; display: block; margin-bottom: 6px; }
+    .auth-card input {
+      width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0;
+      border-radius: 10px; font-size: 14px; outline: none;
+    }
+    .auth-card input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+
+    /* Dashboard */
+    .dash-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px; border-bottom: 1px solid #e2e8f0;
+    }
+    .dash-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 20px; }
+    .stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+    .stat-value { font-size: 24px; font-weight: 700; color: #0f172a; }
+    .stat-label { font-size: 12px; color: #64748b; }
+
+    /* Items Table */
+    .items-table { padding: 0 20px 20px; }
+    .items-table .row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .items-table .row:last-child { border: none; }
+    .item-avatar { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
+    .badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .badge-active { background: #dcfce7; color: #166534; }
+    .badge-inactive { background: #fef9c3; color: #854d0e; }
+
+    /* Profile */
+    .profile-header { display: flex; align-items: center; gap: 16px; padding: 20px; }
+    .profile-avatar { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; font-weight: 700; }
+
+    /* Item Detail */
+    .item-detail { padding: 20px; }
+    .item-meta { display: flex; gap: 12px; margin: 16px 0; }
+    .meta-chip { flex: 1; background: #f8fafc; border-radius: 10px; padding: 12px; }
+    .meta-chip .label { font-size: 11px; color: #94a3b8; }
+    .meta-chip .value { font-size: 16px; font-weight: 700; }
+
+    /* Pricing */
+    .pricing-grid { display: flex; gap: 16px; padding: 20px; }
+    .pricing-card { flex: 1; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; position: relative; }
+    .pricing-card.popular { border-color: #6366f1; box-shadow: 0 8px 24px rgba(99,102,241,0.15); transform: scale(1.03); }
+    .popular-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .price { font-size: 32px; font-weight: 800; margin: 12px 0; }
+    .price span { font-size: 14px; font-weight: 400; color: #94a3b8; }
+    .pricing-card ul { list-style: none; margin: 16px 0; }
+    .pricing-card li { padding: 6px 0; font-size: 13px; color: #475569; display: flex; align-items: center; gap: 8px; }
+    .pricing-card li::before { content: '✓'; color: #22c55e; font-weight: 700; }
+
+    /* Coloring */
+    .bg-purple-100 { background: #eef2ff; }
+    .bg-blue-100 { background: #dbeafe; }
+    .bg-green-100 { background: #dcfce7; }
+    .bg-orange-100 { background: #ffedd5; }
+    .bg-pink-100 { background: #fce7f3; }
+    .bg-cyan-100 { background: #cffafe; }
+    .text-purple-600 { color: #7c3aed; }
+    .text-blue-600 { color: #2563eb; }
+    .text-green-600 { color: #16a34a; }
+    .text-orange-600 { color: #ea580c; }
+    .text-pink-600 { color: #db2777; }
+    .text-cyan-600 { color: #0891b2; }
+
+    /* Label */
+    .label-mock {
+      text-align: center; margin-top: 8px; font-size: 11px; color: #94a3b8; font-weight: 500;
+    }
+
+    .row-flex { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 40px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>FullStack App — Design Mockup</h1>
+    <p class="subtitle">Screenshot this page to use as reference in Figma. All key screens shown at mobile (390×844) and desktop scale.</p>
+
+    <!-- LANDING PAGE -->
+    <div class="section">
+      <div class="section-title">Landing Page</div>
+      <div class="row-flex">
+        <div class="phone-frame">
+          <div class="status-bar">
+            <span>9:41</span>
+            <div class="notch"></div>
+            <span style="opacity:0">9:41</span>
+          </div>
+          <div class="phone-content">
+            <div class="header-bar">
+              <div class="logo"><div class="logo-icon">F</div>FullStack</div>
+              <div style="display:flex;gap:8px">
+                <div style="width:32px;height:32px;border:1px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">☰</div>
+              </div>
+            </div>
+            <div class="hero">
+              <div class="hero-badge">★ Trusted by 10K+ users</div>
+              <h1>Build Something <span>Amazing</span> Together</h1>
+              <p>A modern full-stack platform that empowers teams to create, manage, and scale their projects.</p>
+              <div class="hero-buttons">
+                <button class="btn btn-primary">Get Started →</button>
+                <button class="btn btn-secondary">Browse</button>
+              </div>
+            </div>
+            <div class="card-grid">
+              <div class="card">
+                <div class="card-icon bg-purple-100 text-purple-600">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Blazing fast load times and smooth interactions.</p>
+              </div>
+              <div class="card">
+                <div class="card-icon bg-blue-100 text-blue-600">🛡️</div>
+                <h3>Enterprise Security</h3>
+                <p>Bank-grade encryption to keep your data safe.</p>
+              </div>
+            </div>
+            <div class="card-grid" style="padding-top:0">
+              <div class="card">
+                <div class="card-icon bg-green-100 text-green-600">👥</div>
+                <h3>Team Collaboration</h3>
+                <p>Work together with role-based access control.</p>
+              </div>
+              <div class="card">
+                <div class="card-icon bg-orange-100 text-orange-600">📊</div>
+                <h3>Analytics</h3>
+                <p>Comprehensive analytics and reporting tools.</p>
+              </div>
+            </div>
+            <div style="padding:20px;text-align:center">
+              <div style="display:flex;justify-content:space-around;padding:16px 0">
+                <div><div style="font-size:20px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">99.9%</div><div style="font-size:11px;color:#64748b">Uptime</div></div>
+                <div><div style="font-size:20px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">10K+</div><div style="font-size:11px;color:#64748b">Users</div></div>
+                <div><div style="font-size:20px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">4.9/5</div><div style="font-size:11px;color:#64748b">Rating</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="label-mock">Mobile Landing</div>
+        </div>
+
+        <div class="desktop-frame" style="max-width:700px">
+          <div class="browser-bar">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <div class="url-bar">localhost:5173</div>
+          </div>
+          <div class="hero-desktop">
+            <div class="hero-badge" style="display:inline-flex">★ Trusted by 10,000+ users worldwide</div>
+            <h1>Build Something <span>Amazing</span> Together</h1>
+            <p>A modern full-stack platform that empowers teams to create, manage, and scale their projects with ease.</p>
+            <div style="display:flex;gap:12px;justify-content:center">
+              <button class="btn btn-primary" style="padding:12px 28px;font-size:16px">Get Started Free →</button>
+              <button class="btn btn-secondary" style="padding:12px 28px;font-size:16px">Browse Items</button>
+            </div>
+            <div style="display:flex;justify-content:center;gap:24px;margin-top:32px;font-size:13px;color:#64748b">
+              <span>✓ No credit card</span>
+              <span>✓ Free forever plan</span>
+              <span>✓ Cancel anytime</span>
+            </div>
+          </div>
+          <div class="desktop-features">
+            <div class="card"><div class="card-icon bg-purple-100 text-purple-600">⚡</div><h3>Lightning Fast</h3><p>Blazing fast load times and smooth interactions.</p></div>
+            <div class="card"><div class="card-icon bg-blue-100 text-blue-600">🛡️</div><h3>Enterprise Security</h3><p>Bank-grade encryption to keep your data safe.</p></div>
+            <div class="card"><div class="card-icon bg-green-100 text-green-600">👥</div><h3>Team Collaboration</h3><p>Work together with role-based access control.</p></div>
+          </div>
+          <div style="text-align:center;padding:40px 60px;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff">
+            <h2 style="font-size:28px;margin-bottom:8px">Ready to Get Started?</h2>
+            <p style="opacity:0.9;margin-bottom:20px">Join thousands of users building amazing things.</p>
+            <button style="padding:12px 28px;border-radius:10px;border:none;background:#fff;color:#4f46e5;font-weight:600;font-size:15px;cursor:pointer">Start Free Trial →</button>
+          </div>
+          <div class="label-mock">Desktop Landing (Hero + Features + CTA)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTH -->
+    <div class="section">
+      <div class="section-title">Authentication</div>
+      <div class="row-flex">
+        <div class="phone-frame" style="margin-bottom:0">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div style="text-align:center;padding:32px 0 0">
+              <div class="logo-icon" style="margin:0 auto 12px;width:48px;height:48px;font-size:20px">F</div>
+              <h2 style="font-size:22px">Welcome back</h2>
+              <p style="font-size:14px;color:#64748b">Sign in to your account</p>
+            </div>
+            <div class="auth-card" style="border:none;box-shadow:none;padding-top:12px">
+              <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" value="alice@example.com" /></div>
+              <div class="field"><label>Password</label><input type="password" placeholder="••••••••" value="password" /></div>
+              <button class="btn btn-primary" style="width:100%;padding:12px">Sign In →</button>
+            </div>
+            <p style="text-align:center;font-size:13px;color:#64748b">Don't have an account? <span style="color:#6366f1;font-weight:600">Create one</span></p>
+          </div>
+          <div class="label-mock">Login</div>
+        </div>
+        <div class="phone-frame">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div style="text-align:center;padding:32px 0 0">
+              <div class="logo-icon" style="margin:0 auto 12px;width:48px;height:48px;font-size:20px">F</div>
+              <h2 style="font-size:22px">Create Account</h2>
+              <p style="font-size:14px;color:#64748b">Get started with your free account</p>
+            </div>
+            <div class="auth-card" style="border:none;box-shadow:none;padding-top:12px">
+              <div class="field"><label>Name</label><input type="text" placeholder="John Doe" /></div>
+              <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+              <div class="field"><label>Password</label><input type="password" placeholder="At least 6 characters" /></div>
+              <div class="field"><label>Confirm Password</label><input type="password" placeholder="Repeat your password" /></div>
+              <button class="btn btn-primary" style="width:100%;padding:12px">Create Account →</button>
+            </div>
+            <p style="text-align:center;font-size:13px;color:#64748b">Already have an account? <span style="color:#6366f1;font-weight:600">Sign in</span></p>
+          </div>
+          <div class="label-mock">Register</div>
+        </div>
+        <div class="desktop-frame" style="max-width:380px">
+          <div class="browser-bar"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><div class="url-bar">/login</div></div>
+          <div style="text-align:center;padding:40px 32px 0">
+            <div class="logo-icon" style="margin:0 auto 12px;width:48px;height:48px;font-size:20px">F</div>
+            <h2 style="font-size:24px">Welcome back</h2>
+            <p style="font-size:14px;color:#64748b">Sign in to your account to continue</p>
+          </div>
+          <div style="padding:20px 32px 32px">
+            <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+            <div class="field"><label>Password</label><input type="password" placeholder="Enter your password" /></div>
+            <button class="btn btn-primary" style="width:100%;padding:12px">Sign In →</button>
+            <p style="text-align:center;margin-top:20px;font-size:13px;color:#64748b">Don't have an account? <span style="color:#6366f1;font-weight:600">Create one</span></p>
+          </div>
+          <div class="label-mock">Desktop Login</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="section">
+      <div class="section-title">Dashboard</div>
+      <div class="row-flex">
+        <div class="phone-frame">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div class="dash-header">
+              <div><div style="font-size:12px;color:#64748b">Welcome back,</div><div style="font-weight:700">Alice</div></div>
+              <div style="display:flex;gap:8px">
+                <div style="width:36px;height:36px;border-radius:8px;background:#6366f1;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">A</div>
+              </div>
+            </div>
+            <div class="dash-stats">
+              <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">Total Items</div></div>
+              <div class="stat-card"><div class="stat-value">8</div><div class="stat-label">Active</div></div>
+              <div class="stat-card"><div class="stat-value">+12%</div><div class="stat-label">Growth</div></div>
+              <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">This Week</div></div>
+            </div>
+            <div style="padding:0 20px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                <span style="font-weight:600;font-size:15px">Recent Items</span>
+                <span style="font-size:12px;color:#6366f1;font-weight:500">View all</span>
+              </div>
+              <div class="items-table" style="padding:0">
+                <div class="row">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div class="item-avatar" style="background:#7c3aed">P</div>
+                    <div><div style="font-size:14px;font-weight:600">Pro Plan</div><div style="font-size:11px;color:#94a3b8">Jul 5, 2026</div></div>
+                  </div>
+                  <div class="badge badge-active">active</div>
+                </div>
+                <div class="row">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div class="item-avatar" style="background:#0891b2">D</div>
+                    <div><div style="font-size:14px;font-weight:600">Design Kit</div><div style="font-size:11px;color:#94a3b8">Jul 3, 2026</div></div>
+                  </div>
+                  <div class="badge badge-active">active</div>
+                </div>
+                <div class="row">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div class="item-avatar" style="background:#db2777">B</div>
+                    <div><div style="font-size:14px;font-weight:600">Brand Guide</div><div style="font-size:11px;color:#94a3b8">Jun 28, 2026</div></div>
+                  </div>
+                  <div class="badge badge-inactive">inactive</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="label-mock">Mobile Dashboard</div>
+        </div>
+        <div class="desktop-frame" style="max-width:650px">
+          <div class="browser-bar"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><div class="url-bar">/dashboard</div></div>
+          <div style="display:flex;height:400px">
+            <div style="width:220px;background:#f8fafc;border-right:1px solid #e2e8f0;padding:20px 12px">
+              <div class="logo" style="margin-bottom:24px"><div class="logo-icon">F</div>FullStack</div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="padding:10px 12px;background:#eef2ff;color:#4f46e5;border-radius:10px;font-size:13px;font-weight:600">📊 Dashboard</div>
+                <div style="padding:10px 12px;border-radius:10px;font-size:13px;color:#64748b">📦 My Items</div>
+                <div style="padding:10px 12px;border-radius:10px;font-size:13px;color:#64748b">➕ New Item</div>
+                <div style="padding:10px 12px;border-radius:10px;font-size:13px;color:#64748b">👤 Profile</div>
+                <div style="margin-top:40px;padding:10px 12px;border-radius:10px;font-size:13px;color:#ef4444">🚪 Logout</div>
+              </div>
+            </div>
+            <div style="flex:1;overflow-y:auto">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #e2e8f0">
+                <div><span style="font-weight:700">Dashboard</span></div>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <span style="font-size:13px;color:#64748b">Alice Smith</span>
+                  <div style="width:32px;height:32px;border-radius:8px;background:#6366f1;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px">A</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:24px">
+                <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">Total Items</div></div>
+                <div class="stat-card"><div class="stat-value">8</div><div class="stat-label">Active</div></div>
+                <div class="stat-card"><div class="stat-value">+12%</div><div class="stat-label">Growth</div></div>
+                <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">This Week</div></div>
+              </div>
+              <div style="padding:0 24px 24px">
+                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">
+                  <div style="display:flex;justify-content:space-between;padding:16px;border-bottom:1px solid #e2e8f0">
+                    <span style="font-weight:600">Recent Items</span>
+                    <span style="font-size:12px;color:#6366f1;font-weight:500">View all</span>
+                  </div>
+                  <div class="items-table" style="padding:0">
+                    <div class="row" style="padding:12px 16px"><div style="display:flex;align-items:center;gap:12px"><div class="item-avatar" style="background:#7c3aed">P</div><div><div style="font-size:14px;font-weight:600">Pro Plan</div><div style="font-size:11px;color:#94a3b8">Jul 5, 2026</div></div></div><div style="display:flex;align-items:center;gap:16px"><span class="badge badge-active">active</span><span style="font-size:14px;font-weight:700;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$29.00</span></div></div>
+                    <div class="row" style="padding:12px 16px"><div style="display:flex;align-items:center;gap:12px"><div class="item-avatar" style="background:#0891b2">D</div><div><div style="font-size:14px;font-weight:600">Design Kit</div><div style="font-size:11px;color:#94a3b8">Jul 3, 2026</div></div></div><div style="display:flex;align-items:center;gap:16px"><span class="badge badge-active">active</span><span style="font-size:14px;font-weight:700;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$49.00</span></div></div>
+                    <div class="row" style="padding:12px 16px"><div style="display:flex;align-items:center;gap:12px"><div class="item-avatar" style="background:#db2777">B</div><div><div style="font-size:14px;font-weight:600">Brand Guide</div><div style="font-size:11px;color:#94a3b8">Jun 28, 2026</div></div></div><div style="display:flex;align-items:center;gap:16px"><span class="badge badge-inactive">inactive</span><span style="font-size:14px;font-weight:700;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$19.00</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="label-mock">Desktop Dashboard (Sidebar + Stats + Recent Items)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEMS + DETAIL -->
+    <div class="section">
+      <div class="section-title">Items Browser & Detail</div>
+      <div class="row-flex">
+        <div class="phone-frame">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div class="header-bar" style="border:none"><div class="logo"><div class="logo-icon">F</div>FullStack</div></div>
+            <div style="padding:0 20px">
+              <h2 style="font-size:22px;margin-bottom:4px">Browse Items</h2>
+              <p style="font-size:13px;color:#64748b;margin-bottom:16px">Discover amazing items from our community.</p>
+              <div style="display:flex;gap:8px;margin-bottom:16px">
+                <div style="flex:1;position:relative">
+                  <span style="position:absolute;left:12px;top:10px;color:#94a3b8">🔍</span>
+                  <input style="width:100%;padding:10px 12px 10px 36px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px" placeholder="Search items..." />
+                </div>
+                <div style="padding:10px;border:1px solid #e2e8f0;border-radius:10px">⚙️</div>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+                <span style="padding:6px 14px;background:#6366f1;color:#fff;border-radius:20px;font-size:12px;font-weight:500">All</span>
+                <span style="padding:6px 14px;background:#f1f5f9;border-radius:20px;font-size:12px;color:#64748b">Tech</span>
+                <span style="padding:6px 14px;background:#f1f5f9;border-radius:20px;font-size:12px;color:#64748b">Design</span>
+                <span style="padding:6px 14px;background:#f1f5f9;border-radius:20px;font-size:12px;color:#64748b">Business</span>
+              </div>
+            </div>
+            <div class="card-grid" style="padding:0 20px 20px">
+              <div class="card" style="min-width:calc(50% - 8px);padding:16px">
+                <div style="width:36px;height:36px;border-radius:8px;background:#7c3aed;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;margin-bottom:8px">P</div>
+                <div style="font-size:14px;font-weight:600;margin-bottom:4px">Pro Plan</div>
+                <div style="font-size:11px;color:#94a3b8;margin-bottom:8px">Complete project management solution...</div>
+                <div style="display:flex;justify-content:space-between"><span style="font-size:16px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$29</span><span style="font-size:10px;color:#94a3b8">Jul 5</span></div>
+              </div>
+              <div class="card" style="min-width:calc(50% - 8px);padding:16px">
+                <div style="width:36px;height:36px;border-radius:8px;background:#0891b2;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;margin-bottom:8px">D</div>
+                <div style="font-size:14px;font-weight:600;margin-bottom:4px">Design Kit</div>
+                <div style="font-size:11px;color:#94a3b8;margin-bottom:8px">Premium UI components and templates...</div>
+                <div style="display:flex;justify-content:space-between"><span style="font-size:16px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$49</span><span style="font-size:10px;color:#94a3b8">Jul 3</span></div>
+              </div>
+            </div>
+            <div class="card-grid" style="padding:0 20px 20px">
+              <div class="card" style="min-width:calc(50% - 8px);padding:16px">
+                <div style="width:36px;height:36px;border-radius:8px;background:#db2777;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;margin-bottom:8px">B</div>
+                <div style="font-size:14px;font-weight:600;margin-bottom:4px">Brand Guide</div>
+                <div style="font-size:11px;color:#94a3b8;margin-bottom:8px">Brand identity and style guidelines...</div>
+                <div style="display:flex;justify-content:space-between"><span style="font-size:16px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$19</span><span style="font-size:10px;color:#94a3b8">Jun 28</span></div>
+              </div>
+              <div class="card" style="min-width:calc(50% - 8px);padding:16px">
+                <div style="width:36px;height:36px;border-radius:8px;background:#16a34a;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;margin-bottom:8px">A</div>
+                <div style="font-size:14px;font-weight:600;margin-bottom:4px">API Boilerplate</div>
+                <div style="font-size:11px;color:#94a3b8;margin-bottom:8px">Node.js API starter with auth...</div>
+                <div style="display:flex;justify-content:space-between"><span style="font-size:16px;font-weight:800;background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$39</span><span style="font-size:10px;color:#94a3b8">Jun 25</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="label-mock">Items List (Mobile)</div>
+        </div>
+
+        <div class="phone-frame">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div style="padding:16px 20px">
+              <span style="color:#6366f1;font-size:13px">← Back</span>
+            </div>
+            <div style="padding:0 20px">
+              <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px">
+                <div style="width:48px;height:48px;border-radius:10px;background:#7c3aed;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:700">P</div>
+                <div><h2 style="font-size:20px">Pro Plan</h2><span style="padding:4px 10px;background:#eef2ff;color:#4f46e5;border-radius:20px;font-size:11px;font-weight:600">Technology</span></div>
+              </div>
+              <div class="item-meta">
+                <div class="meta-chip"><div class="label">Price</div><div class="value" style="background:linear-gradient(135deg,#6366f1,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$29.00</div></div>
+                <div class="meta-chip"><div class="label">Category</div><div class="value" style="font-size:13px">Technology</div></div>
+                <div class="meta-chip"><div class="label">Created</div><div class="value" style="font-size:13px">Jul 5</div></div>
+              </div>
+              <h3 style="font-size:15px;font-weight:600;margin-bottom:8px">Description</h3>
+              <p style="font-size:13px;color:#64748b;line-height:1.6">Complete project management solution with team collaboration, task tracking, and real-time analytics. Perfect for growing teams.</p>
+            </div>
+          </div>
+          <div class="label-mock">Item Detail (Mobile)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE + PRICING -->
+    <div class="section">
+      <div class="section-title">Profile & Pricing</div>
+      <div class="row-flex">
+        <div class="phone-frame">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div class="profile-header">
+              <div class="profile-avatar" style="background:#6366f1">A</div>
+              <div><h2 style="font-size:18px">Alice Smith</h2><span style="font-size:13px;color:#64748b">alice@example.com</span><br/><span class="badge badge-active" style="margin-top:4px;display:inline-block">user</span></div>
+            </div>
+            <div style="padding:0 20px">
+              <div class="field"><label style="font-size:13px;font-weight:500;color:#334155">Name</label><input style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px" value="Alice Smith" /></div>
+              <div class="field" style="margin-top:12px"><label style="font-size:13px;font-weight:500;color:#334155">Phone</label><input style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px" placeholder="+1 (555) 000-0000" /></div>
+              <div class="field" style="margin-top:12px"><label style="font-size:13px;font-weight:500;color:#334155">Bio</label><textarea style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;min-height:60px;resize:none">Full-stack developer</textarea></div>
+              <button class="btn btn-primary" style="width:100%;margin-top:8px">💾 Save Changes</button>
+            </div>
+          </div>
+          <div class="label-mock">Profile (Mobile)</div>
+        </div>
+        <div class="phone-frame">
+          <div class="status-bar"><span>9:41</span><div class="notch"></div><span style="opacity:0">9:41</span></div>
+          <div class="phone-content">
+            <div style="text-align:center;padding:32px 20px 16px">
+              <h2 style="font-size:22px">Simple Pricing</h2>
+              <p style="font-size:13px;color:#64748b">Choose the perfect plan for your needs.</p>
+            </div>
+            <div class="pricing-grid" style="flex-direction:column;padding:0 20px 20px;gap:12px">
+              <div class="pricing-card" style="display:flex;align-items:center;padding:16px">
+                <div style="flex:1"><div style="font-weight:600">Free</div><div style="font-size:24px;font-weight:800">$0</div></div>
+                <ul style="margin:0;list-style:none;font-size:12px;color:#64748b"><li>✓ Up to 5 items</li><li>✓ Basic search</li></ul>
+              </div>
+              <div class="pricing-card popular" style="display:flex;align-items:center;padding:16px">
+                <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;padding:2px 12px;border-radius:20px;font-size:10px;font-weight:600">Popular</div>
+                <div style="flex:1"><div style="font-weight:600">Pro</div><div style="font-size:24px;font-weight:800">$19</div></div>
+                <ul style="margin:0;list-style:none;font-size:12px;color:#64748b"><li>✓ Up to 100 items</li><li>✓ Advanced search</li></ul>
+              </div>
+              <div class="pricing-card" style="display:flex;align-items:center;padding:16px">
+                <div style="flex:1"><div style="font-weight:600">Business</div><div style="font-size:24px;font-weight:800">$49</div></div>
+                <ul style="margin:0;list-style:none;font-size:12px;color:#64748b"><li>✓ Unlimited items</li><li>✓ 24/7 support</li></ul>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin:0 20px;width:calc(100% - 40px)">Get Started</button>
+            <div style="height:20px"></div>
+          </div>
+          <div class="label-mock">Pricing (Mobile)</div>
+        </div>
+        <div class="desktop-frame" style="max-width:550px">
+          <div class="browser-bar"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><div class="url-bar">/pricing</div></div>
+          <div style="text-align:center;padding:40px 40px 24px">
+            <h2 style="font-size:28px">Simple, Transparent Pricing</h2>
+            <p style="color:#64748b;margin-top:6px">Choose the perfect plan for your needs.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding:0 40px 40px">
+            <div class="pricing-card" style="text-align:center"><h3 style="font-size:16px">Free</h3><div class="price">$0<span>/forever</span></div><ul style="text-align:left;display:inline-block"><li>✓ Up to 5 items</li><li>✓ Basic search</li><li>✓ Community support</li></ul><button class="btn btn-secondary" style="width:100%;margin-top:16px">Get Started</button></div>
+            <div class="pricing-card popular" style="text-align:center"><div class="popular-badge">Most Popular</div><h3 style="font-size:16px">Pro</h3><div class="price">$19<span>/month</span></div><ul style="text-align:left;display:inline-block"><li>✓ Up to 100 items</li><li>✓ Advanced search</li><li>✓ Priority support</li></ul><button class="btn btn-primary" style="width:100%;margin-top:16px">Start Free Trial</button></div>
+            <div class="pricing-card" style="text-align:center"><h3 style="font-size:16px">Business</h3><div class="price">$49<span>/month</span></div><ul style="text-align:left;display:inline-block"><li>✓ Unlimited items</li><li>✓ Full-text search</li><li>✓ 24/7 support</li></ul><button class="btn btn-secondary" style="width:100%;margin-top:16px">Contact Sales</button></div>
+          </div>
+          <div class="label-mock">Desktop Pricing (3-column with popular badge)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOR PALETTE -->
+    <div class="section">
+      <div class="section-title">Design Tokens</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px">Primary Colors</div>
+          <div style="display:flex;gap:4px;margin-bottom:12px">
+            <div style="width:40px;height:40px;border-radius:8px;background:#eef2ff" title="50"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#e0e7ff" title="100"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#c7d2fe" title="200"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#a5b4fc" title="300"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#818cf8" title="400"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#6366f1" title="500"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#4f46e5" title="600"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#4338ca" title="700"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#3730a3" title="800"></div>
+            <div style="width:40px;height:40px;border-radius:8px;background:#312e81" title="900"></div>
+          </div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px">Text</div>
+          <div style="display:flex;gap:4px;margin-bottom:12px">
+            <div style="width:50px;height:30px;border-radius:6px;background:#0f172a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">900</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#334155;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">700</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#64748b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">500</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#94a3b8;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">400</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;color:#334155;font-size:9px">200</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;color:#334155;font-size:9px">100</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px">Status / Semantic</div>
+          <div style="display:flex;gap:4px">
+            <div style="width:50px;height:30px;border-radius:6px;background:#dcfce7;display:flex;align-items:center;justify-content:center;color:#166534;font-size:9px">Success</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#fef9c3;display:flex;align-items:center;justify-content:center;color:#854d0e;font-size:9px">Warning</div>
+            <div style="width:50px;height:30px;border-radius:6px;background:#fee2e2;display:flex;align-items:center;justify-content:center;color:#991b1b;font-size:9px">Error</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px">Typography</div>
+          <div style="background:#f8fafc;border-radius:10px;padding:16px;min-width:300px">
+            <div style="margin-bottom:4px;font-size:36px;font-weight:800">Heading 1 (36px)</div>
+            <div style="margin-bottom:4px;font-size:30px;font-weight:700">Heading 2 (30px)</div>
+            <div style="margin-bottom:4px;font-size:24px;font-weight:700">Heading 3 (24px)</div>
+            <div style="margin-bottom:4px;font-size:20px;font-weight:600">Heading 4 (20px)</div>
+            <div style="margin-bottom:4px;font-size:16px;font-weight:500">Body (16px)</div>
+            <div style="margin-bottom:4px;font-size:14px;font-weight:400">Body small (14px)</div>
+            <div style="margin-bottom:4px;font-size:12px;font-weight:400">Caption (12px)</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;margin:16px 0 8px">Spacing</div>
+          <div style="display:flex;gap:4px;align-items:center">
+            <div style="width:4px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:8px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:12px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:16px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:20px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:24px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:32px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:40px;height:20px;background:#6366f1;border-radius:2px"></div>
+            <div style="width:48px;height:20px;background:#6366f1;border-radius:2px"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:4px;font-size:10px;color:#94a3b8">
+            <span>4</span><span>8</span><span>12</span><span>16</span><span>20</span><span>24</span><span>32</span><span>40</span><span>48</span>
+          </div>
+          <div style="font-size:13px;font-weight:600;margin:16px 0 8px">Border Radius</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <div style="width:40px;height:40px;border:2px solid #6366f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px">4</div>
+            <div style="width:40px;height:40px;border:2px solid #6366f1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:8px">8</div>
+            <div style="width:40px;height:40px;border:2px solid #6366f1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:8px">10</div>
+            <div style="width:40px;height:40px;border:2px solid #6366f1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:8px">12</div>
+            <div style="width:40px;height:40px;border:2px solid #6366f1;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:8px">16</div>
+            <div style="width:40px;height:40px;border:2px solid #6366f1;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:8px">24</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px">Component States</div>
+          <div style="background:#f8fafc;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px">
+            <button class="btn btn-primary" style="width:200px">Primary Button</button>
+            <button class="btn btn-secondary" style="width:200px">Secondary Button</button>
+            <button style="width:200px;padding:8px 20px;border-radius:10px;border:none;background:transparent;color:#475569;font-size:14px;font-weight:600;cursor:pointer;text-align:left">Ghost Button</button>
+            <button style="width:200px;padding:8px 20px;border-radius:10px;border:none;background:#ef4444;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Danger Button</button>
+            <div style="display:flex;gap:6px;margin-top:4px">
+              <span class="badge badge-active">Active</span>
+              <span class="badge badge-inactive">Inactive</span>
+              <span style="padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b">Archived</span>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:4px">
+              <span style="padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#eef2ff;color:#4f46e5">Technology</span>
+              <span style="padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#fce7f3;color:#db2777">Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLASSMORPHISM -->
+    <div class="section">
+      <div class="section-title">Glassmorphism Effect</div>
+      <div style="position:relative;width:100%;max-width:400px;height:200px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:16px;overflow:hidden;padding:24px">
+        <div style="width:100%;height:100%;background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);border-radius:12px;border:1px solid rgba(255,255,255,0.2);padding:20px;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:4px">Glass Card</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.8)">background: rgba(255,255,255,0.15)<br/>backdrop-filter: blur(12px)<br/>border: 1px solid rgba(255,255,255,0.2)</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;padding:40px 0;font-size:14px;color:#94a3b8">
+      FullStack App — Design Mockup. Open this file in a browser, screenshot any section, and paste into Figma as a reference layer.
+    </p>
+  </div>
+</body>
+</html>
