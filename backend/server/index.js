@@ -25,6 +25,14 @@ const app = express();
 
 configureCloudinary();
 
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ success: true, message: 'Server is running' });
+});
+
+app.get('/', (req, res) => {
+  res.status(200).json({ success: true, message: 'EcommerceSale API' });
+});
+
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({
   origin: process.env.CLIENT_URL || '*',
@@ -33,19 +41,6 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-app.use((req, res, next) => {
-  console.log(`[REQUEST] ${req.method} ${req.url}`);
-  next();
-});
-
-app.get('/api/health', (req, res) => {
-  res.status(200).json({ success: true, message: 'Server is running' });
-});
-
-app.get('/', (req, res) => {
-  res.status(200).json({ success: true, message: 'EcommerceSale API' });
-});
 
 app.use(morgan('dev'));
 
