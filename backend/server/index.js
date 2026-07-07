@@ -39,6 +39,7 @@ app.use((req, res, next) => {
     'http://localhost:5173',
     'http://localhost:5000',
     'https://ecommercesale.onrender.com',
+    'https://ecommerce-sale-lake.vercel.app',
     process.env.CLIENT_URL,
   ].filter(Boolean);
   if (origin && allowedOrigins.includes(origin)) {
